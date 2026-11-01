@@ -1,5 +1,8 @@
 package com.practice.shop.orders;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum OrderStatus {
     PLACED,
     PAID,
@@ -12,5 +15,11 @@ public enum OrderStatus {
             case PAID -> next == SHIPPED || next == CANCELLED;
             case SHIPPED, CANCELLED -> false;
         };
+    }
+
+    public List<OrderStatus> nextStatuses() {
+        return Arrays.stream(values())
+                .filter(this::canMoveTo)
+                .toList();
     }
 }

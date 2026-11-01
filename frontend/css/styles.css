@@ -1217,6 +1217,49 @@ body > main {
     z-index: 1;
 }
 
+.admin-filters {
+    margin-bottom: 16px;
+}
+
+.customer-name {
+    display: block;
+    font-weight: 600;
+}
+
+.customer-email {
+    display: block;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.pill-placed {
+    background: var(--primary-soft);
+    color: var(--primary);
+}
+
+.pill-paid {
+    background: #fffbeb;
+    color: #b45309;
+}
+
+.pill-shipped {
+    background: #ecfdf5;;
+}
+
+.pill-cancelled {
+    background: #f3f4f6;
+    color: var(--muted);
+}
+
+.col-actions .toggle-button + .toggle-button {
+    margin-left: 8px;
+}
+
+.toggle-button.danger:hover:not(:disabled) {
+    border-color: #dc2626;
+    color: #dc2626;
+}
+
 @media (max-width: 860px) {
     .product-detail,
     .cart-layout { grid-template-columns: 1fr; gap: 24px; }
