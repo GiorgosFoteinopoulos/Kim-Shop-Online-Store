@@ -63,3 +63,15 @@ export const login = (credentials) => request('POST', '/auth/login', {body: cred
 export const register = (account) => request('POST', '/auth/register', {body: account, auth: false });
 export const fetchMe = () => request('GET', '/auth/me');
 export const fetchMyOrders = () => request('GET', '/orders/mine');
+
+export const fetchAdminProducts = (params) => request('GET', '/admin/products', {params});
+export const fetchAdminProduct = (id) => request('GET', `/admin/products/${id}`);
+export const createProduct = (product) => request('POST', '/admin/products', { body: product });
+export const updateProduct = (id, product) => request('PUT', `/admin/products/${id}`, { body: product });
+export const archiveProduct = (id) => request('DELETE', `/admin/products/${id}`);
+export const restoreProduct = (id) => request('POST', `/admin/products/${id}/restore`);
+
+export const fetchAdminOrders = (params) => request('GET', '/admin/orders', { params });
+export const fetchAdminOrder = (id) => request('GET', `/admin/orders/${encodeURIComponent(id)}`);
+export const changeOrderStatus = (id, status) =>
+    request('PUT', `/admin/orders/${encodeURIComponent(id)}/status`, { body: { status }});

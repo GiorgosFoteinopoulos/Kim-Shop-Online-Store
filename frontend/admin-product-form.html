@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Admin · Product - Kim Shop</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/styles.css">
+        <script type="module" src="js/admin-product-form.js"></script>
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="container header-inner">
+                <a href="index.html" class="brand">
+                    <span class="brand-mark">KS</span>
+                    <span class="brand-text">Kim Shop</span>
+                </a>
+                <a href="cart.html" class="cart-link" aria-label="Shopping cart">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                <path d="M3 6h18"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <span id="cart-count" class="cart-badge" hidden>0</span>
+                </a>
+            </div>
+        </header>
+
+        <main class="container narrow">
+            <a href="admin-products.html" class="back-link">← Back to products</a>
+            <p class="admin-eyebrow">Admin</p>
+            <h1 id="form-title" class="page-title admin-form-title">Product</h1>
+
+            <div id="form-alert" class="form-alert" role="alert" hidden></div>
+            <p id="loading" class="hint form-loading">Loading...</p>
+
+            <form id="product-form" class="form-card" method="post" novalidate hidden>
+                <p id="archived-note" class="archived-note" hidden>
+                    This product is <strong>archived</strong>: customers can't see it.
+                    You can restore it from the products table.
+                </p>
+
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" maxlength="150">
+                    <p class="field-error" data-error-for="name" hidden></p>
+                </div>
+
+                <div class="field">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" maxlength="2000" rows="4"></textarea>
+                    <p class="field-error" data-error-for="description" hidden></p>
+                </div>
+
+                <div class="field-row">
+                    <div class="field">
+                        <label for="price">Price (€)</label>
+                        <input id="price" name="price" type="number" min="0" step="0.01" inputmode="decimal">
+                        <p class="field-error" data-error-for="price" hidden></p>
+                    </div>
+                    <div class="field">
+                        <label for="stock">Stock</label>
+                        <input id="stock" name="stock" type="number" min="0" step="1" inputmode="numeric">
+                        <p class="field-error" data-error-for="stock" hidden></p>
+                    </div>
+                    </div>
+                    <div class="field">
+                        <label for="categoryId">Category</label>
+                        <select id="categoryId" name="categoryId">
+                            <option value="">Choose a category...</option>
+                        </select>
+                        <p class="field-error" data-error-for="categoryId" hidden></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="imageUrl">Image URL <span class="optional">(optional)</span></label>
+                        <input id="imageUrl" name="imageUrl" type="url" maxlength="500" placeholder="https://...">
+                        <p class="field-error" data-error-for="imageUrl" hidden></p>
+                    </div>
+                    <div class="form-actions">
+                        <a href="admin-products.html" class="cancel-link">Cancel</a>
+                        <button type="submit" class="btn-primary">Save</button>
+                    </div>
+            </form>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">Kim Shop · A practice project with Spring Boot and plain JavaScript</div>
+        </footer>
+    </body>
+</html>

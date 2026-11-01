@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF=8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Admin · Orders - Kim Shop</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/styles.css">
+        <script type="module" src="js/admin-orders.js"></script>
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="container header-inner">
+                <a href="index.html" class="brand">
+                    <span class="brand-mark">KS</span>
+                    <span class="brand-text">Kim Shop</span>
+                </a>
+                <a href="cart.html" class="cart-link" aria-label="Shopping cart">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                <path d="M3 6h18"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <span id="cart-count" class="cart-badge" hidden>0</span>
+        </a>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="admin-header">
+                <div>
+                    <p class="admin-eyebrow">Admin</p>
+                    <h1 class="page-title">Orders</h1>
+                </div>
+                <div class="admin-actions">
+                    <div class="pager">
+                        <span id="page-info" class="hint"></span>
+                        <button id="prev-page" type="button" disabled>← Previous</button>
+                        <button id="next-page" type="button" disabled>Next →</button>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="admin-tabs" aria-label="Admin sections">
+                <a href="admin-products.html">Products</a>
+                <a href="admin-orders.html" aria-current="page">Orders</a>
+            </nav>
+
+             <div class="chips admin-filters" role="group" aria-label="Filter by status">
+        <button type="button" class="chip active" data-status-filter="" aria-pressed="true">All</button>
+        <button type="button" class="chip" data-status-filter="PLACED" aria-pressed="false">Placed</button>
+        <button type="button" class="chip" data-status-filter="PAID" aria-pressed="false">Paid</button>
+        <button type="button" class="chip" data-status-filter="SHIPPED" aria-pressed="false">Shipped</button>
+        <button type="button" class="chip" data-status-filter="CANCELLED" aria-pressed="false">Cancelled</button>
+             </div>
+
+             <div id="admin-message" class="form-alert" role="alert" hidden></div>
+
+             <div class="table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th class="num">Total</th>
+                            <th>Status</th>
+                            <th><span class="visually-hidden">Actions</span></th>
+                        </tr>
+                    
+                    </thead>
+                    <tbody id="orders-body">
+                        <tr><td colspan="6" class="hint">Loading orders...</td></tr>
+                    </tbody>
+                </table>
+             </div>
+        </main>
+        <footer class="site-footer">
+            <div class="container">Kim Shop · A practice project with Spring Boot and plain JavaScript</div>
+        </footer>
+
+        <template id="order-row">
+            <tr>
+                <td class="col-ref"></td>
+                <td class="col-date"></td>
+                <td class="col-customer">
+                    <span class="customer-name"></span>
+                    <span class="customer-email"></span>
+                </td>
+                <td class="col-total num"></td>
+                <td class="col-status"><span class="pill"></span></td>
+                <td class="col-actions"></td>
+            </tr>
+        </template>
+    </body>
+</html>

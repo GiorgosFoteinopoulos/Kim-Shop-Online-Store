@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Admin · Products - Kim Shop</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="js/admin-products.js"></script>
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="container header-inner">
+                <a href="index.html" class="brand">
+                    <span class="brand-mark">KS</span>
+                    <span class="brand-text">Kim Shop</span>
+                </a>
+                <a href="cart.html" class="cart-link" aria-label="Shopping cart">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                <path d="M3 6h18"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <span id="cart-count" class="cart-badge" hidden>0</span>
+                </a>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="admin-header">
+                <div>
+                    <p class="admin-eyebrow">Admin</p>
+                    <h1 class="page-title">Products</h1>
+                </div>
+                <div class="admin-actions">
+                <a href="admin-product-form.html" class="btn-primary">+Add product</a>
+                <div class="pager">
+                    <button id="prev-page" type="button" class="account-link" disabled>← Previous</button>
+                    <span id="page-info" class="hint"></span>
+                    <button id="next-page" type="button" class="account-link" disabled>Next →</button>
+                </div>
+            </div>
+            </div>
+
+            <nav class="admin-tabs" aria-label="Admin sections">
+                <a href="admin-products.html" aria-current="page">Products</a>
+                <a href="admin-orders.html">Orders</a>
+            </nav>
+            <div id="admin-message" class="form-alert" role="alert" hidden></div>
+
+            <div class="table-wrap">
+                <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th class="num">Price</th>
+                        <th class="num">Stock</th>
+                        <th>Status</th>
+                        <th><span class="visually-hidden">Actions</span></th>
+                    </tr>
+                </thead>
+                <tbody id="products-body">
+                    <tr><td colspan="7" class="hint">Loading products...</td></tr>
+                </tbody>
+                </table>
+            </div>
+        </main>
+        <footer class="site-footer">
+            <div class="container">Kim Shop · A practice project with Spring Boot and plain JavaScript</div>
+        </footer>
+
+        <template id="product-row">
+            <tr>
+                <td class="col-id"></td>
+                <td class="col-name"></td>
+                <td class="col-category"></td>
+                <td class="col-price num"></td>
+                <td class="col-stock num"></td>
+                <td class="col-status"><span class="pill"></span></td>
+                <td class="col-actions">
+                    <a class="edit-link">Edit</a>
+                    <button type="button" class="toggle-button"></button>
+                </td>
+            </tr>
+        </template>
+    </body>
+</html>

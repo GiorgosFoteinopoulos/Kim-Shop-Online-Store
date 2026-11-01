@@ -1,6 +1,7 @@
 package com.practice.shop.orders;
 
 
+import com.practice.shop.common.ConflictException;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -61,6 +62,17 @@ public class Order {
         OrderItem item = new OrderItem(this, productId, productName, unitPrice, quantity);
         items.add(item);
         total = total.add(item.getLineTotal());
+    }
+
+    public boolean changeStatus(OrderStatus next) {
+        if (next == status) {
+            return false;
+        }
+        if (!status.canMoveTo(next)) {
+            throw new ConflictException("Cannot change order status from " + status + " to " + next + ".");
+        }
+        status = next;
+        return true;
     }
 
     public Long getId() {

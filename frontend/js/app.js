@@ -1,6 +1,7 @@
 import { fetchCategories, fetchProducts } from './api.js';
 import './header.js';
 import { lookFor, formatPrice } from './format.js';
+import { showProductImage } from './media.js';
 
 const PAGE_SIZE = 8;
 
@@ -117,6 +118,7 @@ function createCard(product) {
     card.href = `product.html?id=${product.id}`;
     card.style.setProperty('--hue', look.hue);
     card.querySelector('.card-emoji').textContent = look.emoji;
+    showProductImage(card.querySelector('.card-media'), product);
     card.querySelector('.card-category').textContent = product.category.name;
     card.querySelector('.card-title').textContent = product.name;
     card.querySelector('.card-desc').textContent = product.description ?? '';

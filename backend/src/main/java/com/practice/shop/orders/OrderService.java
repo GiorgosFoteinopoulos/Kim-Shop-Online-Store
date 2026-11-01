@@ -3,6 +3,7 @@ package com.practice.shop.orders;
 import com.practice.shop.catalog.Product;
 import com.practice.shop.catalog.ProductRepository;
 import com.practice.shop.common.BadRequestException;
+import com.practice.shop.common.ConflictException;
 import com.practice.shop.common.NotFoundException;
 import com.practice.shop.common.UnauthorizedException;
 import com.practice.shop.users.AppUser;
@@ -49,6 +50,9 @@ public class OrderService {
             Product product = products.get(productId);
             if (product == null) {
                 throw new NotFoundException("Product", productId);
+            }
+            if (!product.isActive()) {
+                throw new ConflictException(product.getName() + " is no longer available.");
             }
             product.decreaseStock(quantity);
             order.addItem(product.getId(),product.getName(), product.getPrice(), quantity);

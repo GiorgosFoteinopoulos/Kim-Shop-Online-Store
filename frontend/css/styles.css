@@ -684,6 +684,34 @@ main.narrow > #order-view > .btn-primary { margin-bottom: 56px; }
     white-space: nowrap;
 }
 
+.account-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 16px;
+    border-radius: 999px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+    transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.account-cta:hover {
+    background: #4338ca;
+}
+
+.account-cta:active {
+    transform: scale(0.97);
+}
+
+.account-cta[aria-current="page"] {
+    background: var(--primary-soft);
+    color: var(--primary);
+    box-shadow: none;
+}
+
 .account-greeting {
     font-weight: 500;
 }
@@ -768,7 +796,7 @@ body > main {
 .cart-link,
 .back-link,
 .brand {
-    transition: opacity 150ms ease, transform 150ms ease, backgroung-color 150ms ease;
+    transition: opacity 150ms ease, transform 150ms ease, background-color 150ms ease;
 }
 
 .btn-primary:active:not(:disabled),
@@ -783,7 +811,7 @@ body > main {
     font-size: 0.95rem;
 }
 
-account-nav:hover,
+.account-nav:hover,
 .account-nav[aria-current="page"] {
     text-decoration: underline;
     text-underline-offset: 4px;
@@ -794,12 +822,14 @@ account-nav:hover,
     gap: 12px;
 }
 
-.order-card {
+.orders-list .order-card {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
+    margin-bottom: 0;
     padding: 18px 20px;
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.08);
@@ -809,7 +839,8 @@ account-nav:hover,
     transition: transform 150ms ease, box-shadow 150ms ease;
 }
 
-.order-card:hover {
+
+.orders-list .order-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
@@ -862,6 +893,372 @@ account-nav:hover,
     }
 }
 
+
+.admin-header {
+    position: sticky;
+    top: 69px;                     
+    z-index: 5;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 28px 0 16px;            
+    background: var(--bg);             
+}
+
+.admin-eyebrow {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary);
+}
+
+.admin-header .page-title {
+    margin: 4px 0 0;
+}
+
+
+.admin-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.admin-actions .pager {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.admin-actions #page-info {
+    order: -1;                        
+    margin-right: 4px;
+    white-space: nowrap;
+}
+
+
+.admin-actions .pager button {
+    height: 36px;
+    padding: 0 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.admin-actions .pager button:hover:not(:disabled) {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.admin-actions .pager button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.admin-tabs {
+    display: flex;
+    gap: 24px;
+    margin: 4px 0 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.admin-tabs a {
+    padding: 10px 0;
+    margin-bottom: -1px;
+    color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0.55;
+    border-bottom: 2px solid transparent;
+}
+
+.admin-tabs a[aria-current="page"] {
+    opacity: 1;
+    border-bottom-color: var(--primary);
+}
+
+.table-wrap {
+    overflow-x: auto;
+    margin-bottom: 48px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 12px 16px;
+    text-align: left;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--border);
+}
+
+.admin-table th {
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table tbody tr:hover {
+    background: var(--bg);
+}
+
+.admin-table .num {
+    text-align: right;
+}
+
+
+.admin-table tr.is-archived td:not(.col-status):not(.col-actions) {
+    opacity: 0.45;
+}
+
+.col-actions {
+    text-align: right;
+}
+
+.edit-link {
+    margin-right: 14px;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.edit-link:hover {
+    text-decoration: underline;
+}
+
+.toggle-button {
+    padding: 5px 14px;                  
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.toggle-button:hover:not(:disabled) {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.toggle-button:disabled {
+    opacity: 0.4;
+    cursor: wait;
+}
+
+.pill {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+
+.pill-active {
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.pill-archived {
+    background: #f3f4f6;
+    color: var(--muted);
+}
+
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+
+
+[hidden] {
+    display: none !important;
+}
+
+
+.admin-form-title {
+    margin: 4px 0 24px;
+}
+
+.form-loading {
+    text-align: left;
+}
+
+
+.field textarea,
+.field select {
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+.field textarea {
+    min-height: 110px;
+    resize: vertical;               
+}
+
+.field textarea:focus,
+.field select:focus {
+    background: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--primary-soft);
+}
+
+.field textarea.invalid,
+.field select.invalid {
+    border-color: #dc2626;
+    background: #fef2f2;
+}
+
+.optional {
+    color: var(--muted);
+    font-weight: 400;
+}
+
+
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+@media (max-width: 520px) {
+    .field-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.archived-note {
+    margin: 0;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: #f3f4f6;
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    padding-top: 8px;
+}
+
+.cancel-link {
+    color: var(--muted);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.cancel-link:hover {
+    color: var(--text);
+}
+
+.card-media,
+.detail-media {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    object-fit: contain;
+    background: #fff;
+}
+
+.has-photo .card-emoji,
+.has-photo .detail-emoji {
+    visibility: hidden;
+}
+
+.card-badge {
+    z-index: 1;
+}
+
+.admin-filters {
+    margin-bottom: 16px;
+}
+
+.customer-name {
+    display: block;
+    font-weight: 600;
+}
+
+.customer-email {
+    display: block;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.pill-placed {
+    background: var(--primary-soft);
+    color: var(--primary);
+}
+
+.pill-paid {
+    background: #fffbeb;
+    color: #b45309;
+}
+
+.pill-shipped {
+    background: #ecfdf5;;
+}
+
+.pill-cancelled {
+    background: #f3f4f6;
+    color: var(--muted);
+}
+
+.col-actions .toggle-button + .toggle-button {
+    margin-left: 8px;
+}
+
+.toggle-button.danger:hover:not(:disabled) {
+    border-color: #dc2626;
+    color: #dc2626;
+}
 
 @media (max-width: 860px) {
     .product-detail,

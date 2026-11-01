@@ -2,6 +2,7 @@ import './header.js';
 import { fetchProduct } from './api.js';
 import { lookFor, formatPrice } from './format.js';
 import { addToCart } from './cart.js';
+import { showProductImage } from './media.js';
 
 const container = document.querySelector('#product');
 const template = document.querySelector('#product-detail');
@@ -29,6 +30,7 @@ function render(product) {
     const look = lookFor(product.category.slug);
     view.style.setProperty('--hue', look.hue);
     view.querySelector('.detail-emoji').textContent = look.emoji;
+    showProductImage(view.querySelector('.detail-media'), product);
     view.querySelector('.detail-category').textContent = product.category.name;
     view.querySelector('.detail-title').textContent = product.name;
     view.querySelector('.detail-price').textContent = formatPrice(product.price);

@@ -1,0 +1,7 @@
+{
+  "name": "Refactoring",
+  "description": "Improving the design of existing code, by Martin Fowler.",
+  "price": 46.90,
+  "stock": 12,
+  "categoryId": 2
+}

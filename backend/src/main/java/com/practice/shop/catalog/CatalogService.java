@@ -53,7 +53,7 @@ public class CatalogService {
     }
 
     public ProductResponse getProduct(long id) {
-        return productRepository.findById(id)
+        return productRepository.findByIdAndActiveTrue(id)
                 .map(ProductResponse::from)
                 .orElseThrow(() -> new NotFoundException("Product", id));
     }

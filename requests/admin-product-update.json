@@ -1,0 +1,7 @@
+{
+  "name": "Refactoring (2nd edition)",
+  "description": "Improving the design of existing code, by Martin Fowler. JavaScript examples.",
+  "price": 39.90,
+  "stock": 30,
+  "categoryId": 2
+}

@@ -12,11 +12,9 @@ function updateBadge() {
 
 updateBadge();
 onCartChange(updateBadge);
-
 window.addEventListener('pageshow', updateBadge);
 
 const currentPage = location.pathname.split('/').pop() || 'index.html';
-
 const AUTH_PAGES = ['login.html', 'register.html'];
 
 const accountArea = document.createElement('div');
@@ -28,18 +26,25 @@ function renderAccount() {
 
     const user = getUser();
     if (user) {
+        const items = [];
+    
         const greeting = document.createElement('span');
         greeting.className = 'account-greeting';
         greeting.textContent = `Hi, ${firstName(user.fullName)}`;
+        items.push(greeting);
 
-        const ordersLink = document.createElement('a');
-        ordersLink.href = 'my-orders.html';
-        ordersLink.className = 'account-nav';
-        ordersLink.textContent = 'My orders';
-        if (currentPage === 'my-orders.html') {
-            ordersLink.setAttribute('aria-current', 'page');
+        if (user.role === 'ADMIN') {
+           const manageLink = document.createElement('a');
+           manageLink.href = 'admin-products.html';
+           manageLink.className = 'account-cta';
+           manageLink.textContent = 'Admin Dashboard';
+           if (currentPage.startsWith('admin-')) {
+            manageLink.setAttribute('aria-current', 'page');
+           }
+           items.push(manageLink);
         }
 
+        items.push(navLink('my-orders.html', 'My orders', currentPage === 'my-orders.html'));
 
         const logoutButton = document.createElement('button');
         logoutButton.type = 'button';
@@ -49,9 +54,9 @@ function renderAccount() {
             clearSession();
             location.href = 'index.html';
         });
+        items.push(logoutButton);
 
-        accountArea.append(greeting, ordersLink, logoutButton);
-
+        accountArea.append(...items);
     } else if (!AUTH_PAGES.includes(currentPage)) {
         const loginLink = document.createElement('a');
         loginLink.href = loginUrl();
@@ -60,6 +65,17 @@ function renderAccount() {
 
         accountArea.append(loginLink);
     }
+}
+
+function navLink(href, text, isCurrent) {
+    const link = document.createElement('a');
+    link.href = href;
+    link.className = 'account-nav';
+    link.textContent = text;
+    if (isCurrent) {
+        link.setAttribute('aria-current', 'page');
+    }
+    return link;
 }
 
 function firstName(fullname) {
