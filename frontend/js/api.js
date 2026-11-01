@@ -1,6 +1,6 @@
 import { getToken, clearSession } from "./auth.js";
 
-const API_BASE = 'http://localhost:8080/api';
+const API_BASE = location.port === '5500' ? 'http://localhost:8080/api' : '/api';
 
 
 export class ApiError extends Error {
@@ -13,7 +13,7 @@ export class ApiError extends Error {
 
 
 async function request(method, path, { params = {}, body, auth = true } = {}) {
-    const url = new URL(API_BASE + path);
+    const url = new URL(API_BASE + path, location.origin);
     for (const [key, value] of Object.entries(params)) {
         if (value !== undefined && value !== null && value !== '') {
             url.searchParams.set(key, value);
