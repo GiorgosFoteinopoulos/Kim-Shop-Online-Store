@@ -27,24 +27,29 @@ function renderAccount() {
     const user = getUser();
     if (user) {
         const items = [];
-    
-        const greeting = document.createElement('span');
-        greeting.className = 'account-greeting';
-        greeting.textContent = `Hi, ${firstName(user.fullName)}`;
-        items.push(greeting);
 
         if (user.role === 'ADMIN') {
-           const manageLink = document.createElement('a');
-           manageLink.href = 'admin-products.html';
-           manageLink.className = 'account-cta';
-           manageLink.textContent = 'Admin Dashboard';
-           if (currentPage.startsWith('admin-')) {
-            manageLink.setAttribute('aria-current', 'page');
-           }
-           items.push(manageLink);
+            const manageLink = document.createElement('a');
+            manageLink.href = 'admin-products.html';
+            manageLink.className = 'account-cta';
+            manageLink.textContent = 'Admin Dashboard';
+            if (currentPage.startsWith('admin-')) {
+                manageLink.setAttribute('aria-current', 'page');
+            }
+            items.push(manageLink);
         }
 
         items.push(navLink('my-orders.html', 'My orders', currentPage === 'my-orders.html'));
+
+        const profile = document.createElement('div');
+        profile.className = 'account-profile';
+
+        const avatar = document.createElement('span');
+        avatar.className = 'account-avatar';
+        avatar.textContent = initials(user.fullName);
+        avatar.title = `${user.fullName} · ${user.email}`;
+        avatar.setAttribute('role', 'img');
+        avatar.setAttribute('aria-label', `Signed in as ${user.fullName}`);
 
         const logoutButton = document.createElement('button');
         logoutButton.type = 'button';
@@ -54,7 +59,9 @@ function renderAccount() {
             clearSession();
             location.href = 'index.html';
         });
-        items.push(logoutButton);
+
+        profile.append(avatar, logoutButton);
+        items.push(profile);
 
         accountArea.append(...items);
     } else if (!AUTH_PAGES.includes(currentPage)) {
@@ -78,8 +85,11 @@ function navLink(href, text, isCurrent) {
     return link;
 }
 
-function firstName(fullname) {
-    return fullname.trim().split(' ')[0];
+function initials(fullName) {
+    const words = fullName.trim().split(/\s+/);
+    const first = words[0]?.[0] ?? '';
+    const last = words.length > 1 ? words[words.length - 1][0] : '';
+    return (first + last).toUpperCase();
 }
 
 renderAccount();
